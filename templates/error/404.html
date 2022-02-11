@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+<meta charset="UTF-8">
+<title>CodePen - Sassy 404 UI Study</title>
+
+<link rel="stylesheet" href="/static/css/404/style.css">
+
+</head>
+<body>
+
+<div>
+  <aside><img src="/static/img/404/Mirror.png" alt="404 Image" />
+  </aside>
+  <main>
+    <h1>Sorry!</h1>
+    <p>
+     要么你不够酷，无法访问此网页，要么它不存在<em>. . . 你的社交生活.</em>
+    </p>
+    <button><a href="{% url "home:index" %}" style="text-decoration: none">返回主页</a></button>
+  </main>
+</div>
+
+</body>
+</html>

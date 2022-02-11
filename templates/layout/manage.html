@@ -1,0 +1,80 @@
+{% load project_templatetags %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}控制台{% endblock %}</title>
+    <link href="/static/plugin/bootstrap-3.4.1/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/static/plugin/font-awesome-4.7.0/css/font-awesome.min.css">
+    <script type="text/javascript" src="/static/js/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript" src="/static/js/ajax_common.js"></script>
+    <script type="text/javascript" src="/static/plugin/bootstrap-3.4.1/js/bootstrap.min.js"></script>
+    <style>
+         .navbar-inverse {
+            border-radius: 0;
+        }
+    </style>
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+   <nav class="navbar navbar-inverse">
+       <div class="container">
+          <div class="container-fluid">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="{% url "projects:project_list" %}">BugMind</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li class="dropdown active">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                     aria-haspopup="true" aria-expanded="false"> {% if request.tracer.project %}
+                     {{ request.tracer.project.name }}
+                      {% else %}
+                       项目
+                     {% endif %}  <span class="caret"></span></a>
+                    {% all_project_list request%}
+                </li>
+                  {% if request.tracer.project %}
+                      {% manage_menu_list request%}
+                  {% endif %}
+              </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">工作台</a></li>
+                    <li><a href="#">日历</a></li>
+                    <li><a href="#"><i class="fa fa-bookmark" aria-hidden="true"></i></a></li>
+                    <li><a href="#"><i class="fa fa-bell-o" aria-hidden="true"></i></a></li>
+                        <li class="dropdown">
+                          <a href="#" class="dropdown-toggle" data-toggle="dropdown"
+                             role="button" aria-haspopup="true" aria-expanded="false">
+                              {{ request.tracer.user.username }} <span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="{% url "home:index" %}">官   网</a></li>
+                                <li><a href="#">用户中心</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="{% url "accounts:logout" %}">退  出</a></li>
+                            </ul>
+                        </li>
+                </ul>
+            </div><!-- /.navbar-collapse -->
+          </div><!-- /.container-fluid -->
+       </div>
+    </nav>
+    {% block content %}{% endblock %}
+
+    {% block js %}
+
+    {% endblock %}
+
+</body>
+</html>

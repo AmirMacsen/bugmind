@@ -1,0 +1,19 @@
+<ul class="dropdown-menu">
+    {% if owner %}
+        <li style="font-weight: bold"><i class="fa fa-list" aria-hidden="true" style="margin-left: 10px"></i> 我创建的项目</li>
+        {% for item in owner %}
+            <li><a href="{% url "projects:management:dashboard" project_id=item.id %}">{{ item.name }}</a></li>
+        {% endfor %}
+        <li role="separator" class="divider"></li>
+    {% endif %}
+    
+    {% if participant %}
+        <li style="font-weight: bold"><i class="fa fa-handshake-o" aria-hidden="true" style="margin-left: 10px"></i> 我参与的项目</li>
+        {% for item in participant %}
+            <li><a href="{% url "projects:management:dashboard" project_id=item.project.id %}">{{ item.project.name }}</a></li>
+        {% endfor %}
+        <li role="separator" class="divider"></li>
+    {% endif %}
+
+    <li><a href="{% url "projects:project_list" %}">所有项目</a></li>
+</ul>
