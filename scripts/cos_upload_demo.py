@@ -10,7 +10,7 @@ config = CosConfig(Region=region, SecretId=secret_id, SecretKey=secret_key)
 client = CosS3Client(config)
 
 response = client.upload_file(
-    Bucket='bugmind-1302735599',
+    Bucket='bugmind-',
     LocalFilePath="base.py",
     Key="base.py",
 )
